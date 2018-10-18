@@ -9,6 +9,22 @@ equation = 'y = -12x + 11111140.2121'
 x = 2.5
 # вычислите и выведите y
 
+# Уберем все пробелы из строки
+equation = equation.replace(" ", "")
+
+# Найдем значение коэфициента k
+k = equation[equation.find("=") + 1 : equation.find("x")]
+k = float(k)
+# Найдем значение коэфициента b
+b = equation[equation.find("x") + 1 :]
+b = float(b)
+print("k=", k)
+print("b=", b)
+
+# Вычислим y
+y = k * x + b
+
+print("y=", y)
 
 # Задание-2: Дата задана в виде строки формата 'dd.mm.yyyy'.
 # Проверить, корректно ли введена дата.
