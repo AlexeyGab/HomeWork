@@ -8,7 +8,7 @@ __author__ = 'Габеркорн Алексей Игоревич'
 equation = 'y = -12x + 11111140.2121'
 x = 2.5
 # вычислите и выведите y
-
+print("Задание 1:")
 # Уберем все пробелы из строки
 equation = equation.replace(" ", "")
 
@@ -43,6 +43,71 @@ date = '01.11.1985'
 date = '01.22.1001'
 date = '1.12.1001'
 date = '-2.10.3001'
+
+print("Задание 2:")
+# Разберем строку первым выполним требование #4
+# Для начала у нас в строке должно быть минимум две точки.
+oneDotPos = 0
+twoDotPos = 0
+oneDotPos = date.find('.')
+if(oneDotPos != -1):
+    twoDotPos = date[oneDotPos+1:].find('.')
+    twoDotPos += oneDotPos + 1
+
+# так же наша строка должна содержать только цифры
+digits = "1234567890"
+
+# Если позиция второй точки не равна -1 значит две точки есть
+if(twoDotPos != -1):
+    day = date[:oneDotPos]
+    month = date[oneDotPos+1 : twoDotPos]
+    year = date[twoDotPos+1:]
+
+    # Проверим длину дня, месяца, года
+    lenghtOK = False
+    if len(day) == 2 and len(month) == 2 and len(year) == 4:
+        lenghtOK = True
+    else:
+        print("Неверный формат даты. Неправильные длины подстрок")
+
+    # проверим что все символы это числа
+    digitDayOK = False
+    digitMonthOK = False
+    digitYearOK = False
+    if(lenghtOK):
+        if day[0] in digits and day[1] in digits:
+            digitDayOK = True
+        if month[0] in digits and month[1] in digits:
+            digitMonthOK = True
+        if year[0] in digits and year[1] in digits and year[2] in digits and year[3] in digits:
+            digitYearOK = True
+
+    #Когда убедились что у нас только цифры
+    if digitDayOK and digitMonthOK and digitYearOK:
+        day = int(day)
+        month = int(month)
+        year = int(year)
+
+        # 3. Год должен приводиться к целому положительному числу в диапазоне от 1 до 9999
+        if 1 <= year <= 9999:
+            # 2. Месяц должен приводиться к целому числу в диапазоне от 1 до 12
+            if 1 <= month <= 12:
+                # 1. День должен приводиться к целому числу в диапазоне от 1 до 30(31)
+                #  узнаем сколько дней должно быть в месяце
+                #  https://habr.com/post/261773/
+                dayPerMonth = 30 + (month + (month//8)) % 2
+                if 1 <= day <= dayPerMonth:
+                    print("Дата введена корректно!")
+                else:
+                    print("Неверный формат даты. День должен приводиться к целому числу в диапазоне от 1 до 30(31)")
+            else:
+                print("Месяц должен приводиться к целому числу в диапазоне от 1 до 12")
+        else:
+            print("Неверный формат даты. Год должен приводиться к целому положительному числу в диапазоне от 1 до 9999")
+    else:
+        print("Неверный формат даты. В строке содержатся лишние символы")
+else:
+    print("Неверный формат даты. Нет точек")
 
 
 # Задание-3: "Перевёрнутая башня" (Задача олимпиадного уровня)
