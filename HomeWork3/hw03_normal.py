@@ -1,3 +1,5 @@
+import itertools
+
 # Задание-1:
 # Напишите функцию, возвращающую ряд Фибоначчи с n-элемента до m-элемента.
 # Первыми элементами ряда считать цифры 1 1
@@ -65,7 +67,7 @@ def my_filter(function, buf):
 mBuf1 = [0,1,2,3,4,0,1,2,3,4]
 mBuf2 = ["Привет", "Пока", "До встречи", "Салют", "Привет"]
 
-print(my_filter(lambda x: x == 4, mBuf1))
+print(my_filter(lambda x: x > 2, mBuf1))
 print(my_filter(lambda x: x == "Привет", mBuf2))
 
 
@@ -94,18 +96,19 @@ A4 = (10, 0)
 # A3 = (11, 10)
 # A4 = (10, 0)
 
-# Если у нас 4 точки, значит у нас 4! = 24 разных вариантов последовательности точек
+
 def CheckVectors(A, B, C, D):
     BC = (C[0] - B[0], C[1] - B[1])
     AD = (D[0] - A[0], D[1] - A[1])
     return AD == BC
 
-def searchVectors(A, B, C, D):
-    for i in range(16):
-        pass
-    # ууууух тут надо прилумать лютый перебор
-    # типа такого https://prog-cpp.ru/permutation/
-
-    return True
+# Если у нас 4 точки, значит у нас 4! = 24 разных вариантов последовательности точек
+# Проверяет точки в любом порядке.
+def searchVectors(a, b, c, d):
+    points = [a, b, c, d]
+    for a, b, c, d in itertools.permutations(points):
+        if CheckVectors(a, b, c, d):
+            return True
+    return False
 
 print(searchVectors(A1, A2, A3, A4))
