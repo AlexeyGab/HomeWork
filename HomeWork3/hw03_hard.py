@@ -9,6 +9,27 @@
 # Ввод: -2/3 - -2
 # Вывод: 1 1/3
 
+print("Задание 1:")
+
+# def addition(numerator1, denumerator1, numerator2, denumerator2):
+#
+#     # Приведем все к общему знаменателю просто умножив числитель1 на знаменталь2
+#     #  и наоборот знаменатель2 на знаменатель1. Получим общий знаменатель умножив denumerator1 * denumerator2
+#     denumCommon = denumerator1 * denumerator2
+#     numerator1 *= denumerator2
+#     numerator2 *= denumerator1
+#
+#     summary = numerator1 + numerator2
+#
+# def subtraction():
+#     pass
+#
+#
+#
+# equation = input("Ввести уравнение:")
+#
+# # Удалим пробелы из строки
+# equation = equation.replace('', " ")
 
 # Задание-2:
 # Дана ведомость расчета заработной платы (файл "data/workers").
@@ -17,6 +38,8 @@
 # то их ЗП уменьшается пропорционально, а за заждый час переработки
 # они получают удвоенную ЗП, пропорциональную норме.
 # Кол-во часов, которые были отработаны, указаны в файле "data/hours_of"
+
+
 
 
 # Задание-3:
@@ -31,3 +54,19 @@
 # Подсказка:
 # Чтобы получить список больших букв русского алфавита:
 # print(list(map(chr, range(ord('А'), ord('Я')+1))))
+
+f = open('data/fruits.txt', 'r', encoding='utf-8')
+list_fruit = []
+for fruit in f:
+    if fruit == '\n':
+        pass
+    else:
+        list_fruit.append(fruit.rstrip().strip('\ufeff'))
+
+def let(fruit):
+    letter = fruit[:1]
+    f = open('data/file_{}{}'.format(letter, '.txt'), 'a')
+    f.write(fruit + '\n')
+
+for i in list_fruit:
+    let(i)
